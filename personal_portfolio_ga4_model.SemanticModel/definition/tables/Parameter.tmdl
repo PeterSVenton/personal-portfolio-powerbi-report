@@ -1,0 +1,51 @@
+table Parameter
+	lineageTag: d48171bd-032e-4280-bfbd-5bbf03e92a1e
+
+	column Parameter
+		lineageTag: 28320b8d-00a8-4fab-9178-13714162a941
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Fields'
+		isHidden
+		lineageTag: bcd82318-0f13-4d8d-b7e6-77466cd20837
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Order'
+		isHidden
+		formatString: 0
+		lineageTag: 261bbc03-d4b6-41fa-9696-36ae28612869
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Parameter = calculated
+		mode: import
+		source =
+				{
+				    ("Campaign", NAMEOF('dim_traffic_source'[campaign]), 0),
+				    ("Channel Group", NAMEOF('dim_traffic_source'[default_channel_group]), 1),
+				    ("Medium", NAMEOF('dim_traffic_source'[medium]), 2),
+				    ("Scope", NAMEOF('dim_traffic_source'[scope]), 3),
+				    ("Source", NAMEOF('dim_traffic_source'[source]), 4)
+				}
+
+	annotation PBI_Id = 7c5e98e97a7c4998b95f5dca8e6724ad
+

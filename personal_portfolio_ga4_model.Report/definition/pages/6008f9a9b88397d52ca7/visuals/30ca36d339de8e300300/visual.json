@@ -1,0 +1,308 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "30ca36d339de8e300300",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0,
+    "height": 720.57675713291576,
+    "width": 1279.2517745302714,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_date"
+                    }
+                  },
+                  "Property": "date"
+                }
+              },
+              "queryRef": "dim_date.date",
+              "nativeQueryRef": "date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_traffic_source"
+                    }
+                  },
+                  "Property": "default_channel_group"
+                }
+              },
+              "queryRef": "dim_traffic_source.default_channel_group",
+              "nativeQueryRef": "default_channel_group"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_traffic_source"
+                    }
+                  },
+                  "Property": "medium"
+                }
+              },
+              "queryRef": "dim_traffic_source.medium",
+              "nativeQueryRef": "medium"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_traffic_source"
+                    }
+                  },
+                  "Property": "source"
+                }
+              },
+              "queryRef": "dim_traffic_source.source",
+              "nativeQueryRef": "source"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_user_acquisition"
+                    }
+                  },
+                  "Property": "_fuaSumNewUsers"
+                }
+              },
+              "queryRef": "fact_user_acquisition._fuaSumNewUsers",
+              "nativeQueryRef": "New Users",
+              "displayName": "New Users"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_user_acquisition"
+                    }
+                  },
+                  "Property": "_fuaSumTotalUsers"
+                }
+              },
+              "queryRef": "fact_user_acquisition._fuaSumTotalUsers",
+              "nativeQueryRef": "Total Users",
+              "displayName": "Total Users"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_traffic_acquisition"
+                    }
+                  },
+                  "Property": "_ftaAvgEventsPerSession"
+                }
+              },
+              "queryRef": "fact_traffic_acquisition._ftaAvgEventsPerSession",
+              "nativeQueryRef": "Events",
+              "displayName": "Events"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_traffic_acquisition"
+                    }
+                  },
+                  "Property": "_ftaSumEngagedSessions"
+                }
+              },
+              "queryRef": "fact_traffic_acquisition._ftaSumEngagedSessions",
+              "nativeQueryRef": "_ftaSumEngagedSessions"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_traffic_acquisition"
+                    }
+                  },
+                  "Property": "_ftaSumKeyEvents"
+                }
+              },
+              "queryRef": "fact_traffic_acquisition._ftaSumKeyEvents",
+              "nativeQueryRef": "_ftaSumKeyEvents"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_traffic_acquisition"
+                    }
+                  },
+                  "Property": "_ftaSumSessions"
+                }
+              },
+              "queryRef": "fact_traffic_acquisition._ftaSumSessions",
+              "nativeQueryRef": "_ftaSumSessions"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_traffic_acquisition"
+                    }
+                  },
+                  "Property": "$ftaSumBounceRate"
+                }
+              },
+              "queryRef": "fact_traffic_acquisition.$ftaSumBounceRate",
+              "nativeQueryRef": "$ftaSumBounceRate"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_traffic_acquisition"
+                    }
+                  },
+                  "Property": "_ftaAvgUserEngagementDurationPerSession"
+                }
+              },
+              "queryRef": "fact_traffic_acquisition._ftaAvgUserEngagementDurationPerSession",
+              "nativeQueryRef": "_ftaAvgUserEngagementDurationPerSession"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_traffic_acquisition"
+                    }
+                  },
+                  "Property": "+ftaAvgUserEngagementDurationPerSession(Minutes:Seconds)"
+                }
+              },
+              "queryRef": "fact_traffic_acquisition.+ftaAvgUserEngagementDurationPerSession(Minutes:Seconds):VAR _Minutes",
+              "nativeQueryRef": "+ftaAvgUserEngagementDurationPerSession(Minutes:Seconds)"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#050090'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Minimal'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

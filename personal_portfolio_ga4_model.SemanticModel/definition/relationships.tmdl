@@ -1,0 +1,32 @@
+relationship AutoDetected_8eb45d2f-fca7-469c-a5a7-e94416fb60f9
+	fromColumn: fact_device_metrics.dim_device_key
+	toColumn: dim_device.dim_device_key
+
+relationship AutoDetected_eaf8ff36-c1c6-4582-99da-6277d96d1691
+	fromColumn: fact_page_metrics.dim_page_key
+	toColumn: dim_page.dim_page_key
+
+relationship AutoDetected_4217204e-92e5-4b1b-8edc-b42fb65ebbad
+	fromColumn: fact_traffic_acquisition.dim_traffic_source_key
+	toColumn: dim_traffic_source.dim_traffic_source_key
+
+relationship AutoDetected_4adadf6f-357a-4d2e-aafc-3fb6124650d5
+	fromColumn: fact_user_acquisition.dim_traffic_source_key
+	toColumn: dim_traffic_source.dim_traffic_source_key
+
+relationship 5a6d5efb-7206-634e-b133-ab1984940ae9
+	fromColumn: fact_device_metrics.dim_date_key
+	toColumn: dim_date.dim_date_key
+
+relationship c2933979-f32b-af1f-9aea-0f8530319085
+	fromColumn: fact_traffic_acquisition.dim_date_key
+	toColumn: dim_date.dim_date_key
+
+relationship c4367756-9b01-0d01-19d2-205f5f2c4339
+	fromColumn: fact_user_acquisition.dim_date_key
+	toColumn: dim_date.dim_date_key
+
+relationship 217263d6-ef20-fd60-fa3e-1141cefa43ef
+	fromColumn: fact_page_metrics.dim_date_key
+	toColumn: dim_date.dim_date_key
+

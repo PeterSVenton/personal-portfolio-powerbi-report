@@ -1,0 +1,307 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "662d0180c0e8820b3453",
+  "position": {
+    "x": 668.12971468336809,
+    "y": 123.13653444676409,
+    "z": 2000,
+    "height": 307.84133611691021,
+    "width": 611.12205984690331,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_traffic_source"
+                    }
+                  },
+                  "Property": "source"
+                }
+              },
+              "queryRef": "dim_traffic_source.source",
+              "nativeQueryRef": "Source",
+              "active": true,
+              "displayName": "Source"
+            }
+          ],
+          "fieldParameters": [
+            {
+              "parameterExpr": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Parameter"
+                    }
+                  },
+                  "Property": "Parameter"
+                }
+              },
+              "index": 0,
+              "length": 1
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_traffic_acquisition"
+                    }
+                  },
+                  "Property": "_ftaSumEventCount"
+                }
+              },
+              "queryRef": "fact_traffic_acquisition._ftaSumEventCount",
+              "nativeQueryRef": "Total Events",
+              "displayName": "Total Events"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_traffic_acquisition"
+                    }
+                  },
+                  "Property": "_ftaSumSessions"
+                }
+              },
+              "queryRef": "fact_traffic_acquisition._ftaSumSessions",
+              "nativeQueryRef": "Total Sessions",
+              "displayName": "Total Sessions"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_traffic_acquisition"
+                    }
+                  },
+                  "Property": "_ftaAvgEventsPerSession"
+                }
+              },
+              "queryRef": "fact_traffic_acquisition._ftaAvgEventsPerSession",
+              "nativeQueryRef": "Events per Session",
+              "displayName": "Events per Session"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_traffic_acquisition"
+                    }
+                  },
+                  "Property": "_ftaSumEngagedSessions"
+                }
+              },
+              "queryRef": "fact_traffic_acquisition._ftaSumEngagedSessions",
+              "nativeQueryRef": "Total Engaged Sessions",
+              "displayName": "Total Engaged Sessions"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_traffic_acquisition"
+                    }
+                  },
+                  "Property": "+ftaAvgUserEngagementDurationPerSession(Minutes:Seconds)"
+                }
+              },
+              "queryRef": "fact_traffic_acquisition.+ftaAvgUserEngagementDurationPerSession(Minutes:Seconds):VAR _Minutes",
+              "nativeQueryRef": "Avg Session Duration",
+              "displayName": "Avg Session Duration"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "layout": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Tabular'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#050090'"
+                    }
+                  }
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "rowTotal": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Minimal'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "7b19fd9fd17b600d9ada",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_traffic_acquisition"
+              }
+            },
+            "Property": "_ftaSumEventCount"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b31d42d23c41003cc968",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_traffic_acquisition"
+              }
+            },
+            "Property": "_ftaSumSessions"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "98a5d8048104db22c974",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_traffic_acquisition"
+              }
+            },
+            "Property": "_ftaAvgEventsPerSession"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "62defd9b004286ac9725",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_traffic_acquisition"
+              }
+            },
+            "Property": "_ftaSumEngagedSessions"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c5f673107ae02ddc0c05",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_traffic_acquisition"
+              }
+            },
+            "Property": "+ftaAvgUserEngagementDurationPerSession(Minutes:Seconds)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "e445eefad93bb8607744",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_traffic_source"
+              }
+            },
+            "Property": "source"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

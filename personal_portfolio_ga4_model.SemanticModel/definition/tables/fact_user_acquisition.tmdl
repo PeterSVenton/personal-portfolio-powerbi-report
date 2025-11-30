@@ -1,0 +1,60 @@
+table fact_user_acquisition
+	lineageTag: f9736d9e-53aa-4309-80c9-2fbc05f90bc8
+
+	measure _fuaSumTotalUsers = SUM(fact_user_acquisition[total_users])
+		formatString: #,0
+		lineageTag: aaab1b99-8292-436d-97fb-bca3b1a47174
+
+	measure _fuaSumNewUsers = SUM(fact_user_acquisition[new_users])
+		formatString: #,0
+		lineageTag: 2a298387-7074-4d68-88e2-cf20fdb7f170
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f163461c-4405-4e9d-b500-161d647c9ce1
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column dim_date_key
+		dataType: string
+		lineageTag: f28c64be-d118-481d-a880-e3405e418c10
+		summarizeBy: none
+		sourceColumn: dim_date_key
+
+	column dim_traffic_source_key
+		dataType: int64
+		formatString: 0
+		lineageTag: ac4e2dc2-d1aa-4ee4-8eb7-aae3b148903f
+		summarizeBy: none
+		sourceColumn: dim_traffic_source_key
+
+	column new_users
+		dataType: int64
+		formatString: 0
+		lineageTag: cad29385-066e-4cec-9bd0-75ff3d9dea4b
+		summarizeBy: none
+		sourceColumn: new_users
+
+	column total_users
+		dataType: int64
+		formatString: 0
+		lineageTag: c24cda9d-1f43-4e3d-9d2c-57b557b130e9
+		summarizeBy: none
+		sourceColumn: total_users
+
+	partition fact_user_acquisition = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database(),
+				    #"personal-portfolio-477421" = Source{[Name="personal-portfolio-477421"]}[Data],
+				    ga4_analytics_Schema = #"personal-portfolio-477421"{[Name="ga4_analytics",Kind="Schema"]}[Data],
+				    fact_user_acquisition_Table = ga4_analytics_Schema{[Name="fact_user_acquisition",Kind="Table"]}[Data]
+				in
+				    fact_user_acquisition_Table
+
+	annotation PBI_ResultType = Table
+

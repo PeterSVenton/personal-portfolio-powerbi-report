@@ -1,0 +1,6 @@
+EVALUATE
+FILTER(dim_date,
+dim_date[dim_date_key] = "20251130")
+
+EVALUATE
+{WEEKNUM(TODAY(), 2)}

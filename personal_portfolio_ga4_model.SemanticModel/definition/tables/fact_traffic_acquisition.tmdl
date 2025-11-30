@@ -1,0 +1,165 @@
+table fact_traffic_acquisition
+	lineageTag: b3997f1a-6453-433e-83e7-85cb6d556973
+
+	measure _ftaSumEngagedSessions = SUM(fact_traffic_acquisition[engaged_sessions])
+		formatString: 0
+		lineageTag: d0b4822b-0ed4-4d69-a7a8-2fa21b1d2a84
+
+	measure _ftaSumEventCount = SUM(fact_traffic_acquisition[event_count])
+		formatString: #,0
+		lineageTag: a6e5d418-8d2a-4bdd-9712-4cf65a4702c3
+
+	measure _ftaAvgEventsPerSession = AVERAGE(fact_traffic_acquisition[events_per_session])
+		lineageTag: 18b49fba-d100-4475-bd29-a210117e7902
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _ftaSumKeyEvents = SUM(fact_traffic_acquisition[key_events])
+		formatString: #,0
+		lineageTag: 9ec86693-fd3a-4b48-a614-289591a25a34
+
+	measure _ftaSumSessions = SUM(fact_traffic_acquisition[sessions])
+		formatString: #,0
+		lineageTag: 988c5a4c-be3c-4306-b7c6-5f8a77b37711
+
+	measure _ftaAvgUserEngagementDurationPerSession = AVERAGE(fact_traffic_acquisition[user_engagement_duration_per_session])
+		lineageTag: d277729c-8209-4710-9177-1e4efe7e010e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure +ftaAvgUserEngagementDurationPerSession(Minutes:Seconds) = ```
+			
+			
+			VAR _Minutes = QUOTIENT([_ftaAvgUserEngagementDurationPerSession], 60)
+			
+			VAR _Seconds = INT(MOD([_ftaAvgUserEngagementDurationPerSession], 60))
+			
+			VAR _MinutesString = IF(NOT ISBLANK(_Minutes), _Minutes & " Minutes ")
+			VAR _SecondsString = IF(NOT ISBLANK(_Seconds), _Seconds & " Seconds") 
+			
+			
+			
+			RETURN _MinutesString & _SecondsString
+			```
+		lineageTag: 7239e2f5-d2bb-41e9-8f23-30ef218cbdaf
+
+	measure $ftaSumBounceRate =
+			
+			VAR _TotalSessions = [_ftaSumSessions]
+			VAR _EngagedSessions = [_ftaSumEngagedSessions]
+			RETURN
+			IF(
+			    _TotalSessions = 0,
+			    BLANK(),
+			    1 - DIVIDE(_EngagedSessions, _TotalSessions)
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 49620215-a76b-43ba-8f86-acf5cdce06d8
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 245f4e32-395f-4fbd-81a2-d86b49233ad7
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column dim_date_key
+		dataType: string
+		lineageTag: bb15273b-80c0-4bf9-9d68-9b2a2540644f
+		summarizeBy: none
+		sourceColumn: dim_date_key
+
+	column dim_traffic_source_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 73091355-0b53-479a-8321-adea5e1cf3f1
+		summarizeBy: none
+		sourceColumn: dim_traffic_source_key
+
+	column sessions
+		dataType: int64
+		formatString: 0
+		lineageTag: 2580ef77-f39b-4b30-b997-dbdcdcd36afa
+		summarizeBy: none
+		sourceColumn: sessions
+
+	column event_count
+		dataType: int64
+		formatString: 0
+		lineageTag: b1517084-bce5-4de1-b465-5cc6b200caff
+		summarizeBy: none
+		sourceColumn: event_count
+
+	column key_events
+		dataType: double
+		lineageTag: 3dc19d00-ad0b-454c-bffe-07e61d749d90
+		summarizeBy: none
+		sourceColumn: key_events
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column engaged_sessions
+		dataType: int64
+		formatString: 0
+		lineageTag: 7e3ff168-610e-49b7-a83a-11ee0ccfaba1
+		summarizeBy: none
+		sourceColumn: engaged_sessions
+
+	column engagement_rate
+		dataType: double
+		lineageTag: c1ce2f99-de27-49ff-9ff6-a8b3cbe58275
+		summarizeBy: none
+		sourceColumn: engagement_rate
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column events_per_session
+		dataType: double
+		lineageTag: 92ee3c07-6e65-4932-90cb-eec86ec5a1a2
+		summarizeBy: none
+		sourceColumn: events_per_session
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column session_key_event_rate
+		dataType: double
+		lineageTag: 500bc92d-cab5-43aa-b1a5-7c88e90b7abf
+		summarizeBy: none
+		sourceColumn: session_key_event_rate
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_revenue
+		dataType: double
+		lineageTag: 26b51871-6c1a-4387-92f3-bd8147555722
+		summarizeBy: none
+		sourceColumn: total_revenue
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column user_engagement_duration_per_session
+		dataType: double
+		lineageTag: 23f76f85-f1b2-4e98-9fea-203153fc9c64
+		summarizeBy: none
+		sourceColumn: user_engagement_duration_per_session
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fact_traffic_acquisition = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database(),
+				    #"personal-portfolio-477421" = Source{[Name="personal-portfolio-477421"]}[Data],
+				    ga4_analytics_Schema = #"personal-portfolio-477421"{[Name="ga4_analytics",Kind="Schema"]}[Data],
+				    fact_traffic_acquisition_Table = ga4_analytics_Schema{[Name="fact_traffic_acquisition",Kind="Table"]}[Data],
+				    #"Filtered Rows" = Table.SelectRows(fact_traffic_acquisition_Table, each ([user_engagement_duration_per_session] <> 0))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

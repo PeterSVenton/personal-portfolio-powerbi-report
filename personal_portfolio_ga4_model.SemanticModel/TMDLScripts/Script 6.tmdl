@@ -1,0 +1,118 @@
+createOrReplace
+
+	table fact_page_metrics
+		lineageTag: 4dbf6492-61d5-4904-a063-5da39580f2b2
+
+		column date
+			dataType: dateTime
+			formatString: Long Date
+			lineageTag: 4b8d49df-5aa8-42f7-a75d-4739638ca7a9
+			summarizeBy: none
+			sourceColumn: date
+
+			variation Variation
+				isDefault
+				relationship: d9991d89-783c-41f6-bb24-5aa90931a830
+				defaultHierarchy: LocalDateTable_7c3a2d8f-8e8b-4c5e-afa3-69acf4f0bb16.'Date Hierarchy'
+
+			
+
+			annotation UnderlyingDateTimeDataType = Date
+
+		column dim_date_key
+			dataType: string
+			lineageTag: b02b2cb1-524c-499d-aa26-20e0129529dc
+			summarizeBy: none
+			sourceColumn: dim_date_key
+
+			
+
+		column dim_page_key
+			dataType: int64
+			formatString: 0
+			lineageTag: 9ced63d1-f366-4517-8e40-027f52070223
+			summarizeBy: none
+			sourceColumn: dim_page_key
+
+			
+
+		column active_users
+			dataType: int64
+			formatString: 0
+			lineageTag: add5207e-1dd6-42af-991f-82be107888b2
+			summarizeBy: none
+			sourceColumn: active_users
+
+			
+
+		column event_count
+			dataType: int64
+			formatString: 0
+			lineageTag: 6d4f99c7-a739-4dc0-807a-ca78d6c7eeaa
+			summarizeBy: none
+			sourceColumn: event_count
+
+			
+
+		column key_events
+			dataType: double
+			lineageTag: 1f5bfb27-93ab-43b5-aa77-ea60fb4785e2
+			summarizeBy: none
+			sourceColumn: key_events
+
+			
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		column screen_page_views
+			dataType: int64
+			formatString: 0
+			lineageTag: 00884d3d-fb24-414c-8368-1752d715d490
+			summarizeBy: none
+			sourceColumn: screen_page_views
+
+			
+
+		column screen_page_views_per_user
+			dataType: double
+			lineageTag: 17a8e096-8c58-43a8-ab3e-f03147d26ab2
+			summarizeBy: none
+			sourceColumn: screen_page_views_per_user
+
+			
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		column total_revenue
+			dataType: double
+			lineageTag: 33a876be-fac9-4bb2-9712-78b3e947601c
+			summarizeBy: none
+			sourceColumn: total_revenue
+
+			
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		column user_engagement_duration
+			dataType: double
+			lineageTag: aabdfb13-d0c5-4023-87c4-a33864158be7
+			summarizeBy: none
+			sourceColumn: user_engagement_duration
+
+			
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		partition fact_page_metrics = m
+			mode: import
+			source =
+					let
+					    Source = GoogleBigQuery.Database(),
+					    #"personal-portfolio-477421" = Source{[Name="personal-portfolio-477421"]}[Data],
+					    ga4_analytics_Schema = #"personal-portfolio-477421"{[Name="ga4_analytics",Kind="Schema"]}[Data],
+					    fact_page_metrics_Table = ga4_analytics_Schema{[Name="fact_page_metrics",Kind="Table"]}[Data]
+					in
+					    fact_page_metrics_Table
+
+		annotation PBI_ResultType = Table
+

@@ -1,0 +1,5 @@
+EVALUATE
+
+FILTER(fact_user_acquisition,
+fact_user_acquisition[date] = DATE(2025,11,26)
+)

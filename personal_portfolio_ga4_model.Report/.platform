@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "personal_portfolio_ga4_model"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "be4520a4-53d1-45e3-85d7-cd3227e5a957"
+  }
+}

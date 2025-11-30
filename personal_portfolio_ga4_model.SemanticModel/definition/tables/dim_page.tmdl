@@ -1,0 +1,49 @@
+table dim_page
+	lineageTag: 938c0875-2c89-4956-a72c-22410e170192
+
+	column dim_page_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 5db6d57c-1511-481e-817e-ac15052a815b
+		summarizeBy: none
+		sourceColumn: dim_page_key
+
+	column page_url
+		dataType: string
+		lineageTag: a404ec76-f18c-4720-beb8-69258b0d6156
+		summarizeBy: none
+		sourceColumn: page_url
+
+	column page_title
+		dataType: string
+		lineageTag: 33f7b44b-d38b-4415-821d-dc04c52c90ec
+		summarizeBy: none
+		sourceColumn: page_title
+
+	column screen_class
+		dataType: string
+		lineageTag: 35a94186-3862-487c-925f-2b2c636a918c
+		summarizeBy: none
+		sourceColumn: screen_class
+
+	column page_type
+		dataType: string
+		lineageTag: a1fed76f-42a1-43ca-8b6e-709e3a9dc53c
+		summarizeBy: none
+		sourceColumn: page_type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_page = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database(),
+				    #"personal-portfolio-477421" = Source{[Name="personal-portfolio-477421"]}[Data],
+				    ga4_analytics_Schema = #"personal-portfolio-477421"{[Name="ga4_analytics",Kind="Schema"]}[Data],
+				    dim_page_Table = ga4_analytics_Schema{[Name="dim_page",Kind="Table"]}[Data]
+				in
+				    dim_page_Table
+
+	annotation PBI_ResultType = Table
+

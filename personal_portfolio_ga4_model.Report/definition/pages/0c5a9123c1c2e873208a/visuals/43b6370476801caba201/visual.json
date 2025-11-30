@@ -1,0 +1,309 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "43b6370476801caba201",
+  "position": {
+    "x": 240.44047389506611,
+    "y": 122.8527968806907,
+    "z": 0,
+    "height": 307.13199220172675,
+    "width": 428.229749126979,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_user_acquisition"
+                    }
+                  },
+                  "Property": "_fuaSumNewUsers"
+                }
+              },
+              "queryRef": "fact_user_acquisition._fuaSumNewUsers",
+              "nativeQueryRef": "New Users",
+              "displayName": "New Users"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_user_acquisition"
+                    }
+                  },
+                  "Property": "_fuaSumTotalUsers"
+                }
+              },
+              "queryRef": "fact_user_acquisition._fuaSumTotalUsers",
+              "nativeQueryRef": "Total Users",
+              "displayName": "Total Users"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_traffic_acquisition"
+                    }
+                  },
+                  "Property": "_ftaSumSessions"
+                }
+              },
+              "queryRef": "fact_traffic_acquisition._ftaSumSessions",
+              "nativeQueryRef": "Total Sessions",
+              "displayName": "Total Sessions"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_traffic_acquisition"
+                    }
+                  },
+                  "Property": "_ftaSumEngagedSessions"
+                }
+              },
+              "queryRef": "fact_traffic_acquisition._ftaSumEngagedSessions",
+              "nativeQueryRef": "Total Engaged Sessions",
+              "displayName": "Total Engaged Sessions"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_traffic_acquisition"
+                    }
+                  },
+                  "Property": "_ftaSumEventCount"
+                }
+              },
+              "queryRef": "fact_traffic_acquisition._ftaSumEventCount",
+              "nativeQueryRef": "Total Events",
+              "displayName": "Total Events"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_traffic_acquisition"
+                    }
+                  },
+                  "Property": "_ftaAvgEventsPerSession"
+                }
+              },
+              "queryRef": "fact_traffic_acquisition._ftaAvgEventsPerSession",
+              "nativeQueryRef": "Events per Session",
+              "displayName": "Events per Session"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fact_user_acquisition"
+                  }
+                },
+                "Property": "_fuaSumNewUsers"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "shapeCustomRectangle": [
+        {
+          "properties": {
+            "tileShape": {
+              "expr": {
+                "Literal": {
+                  "Value": "'rectangleRoundedByPixel'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "layout": [
+        {
+          "properties": {
+            "style": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Cards'"
+                }
+              }
+            },
+            "orientation": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "rowCount": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
+                }
+              }
+            },
+            "columnCount": {
+              "expr": {
+                "Literal": {
+                  "Value": "2L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "value": [
+        {
+          "properties": {
+            "horizontalAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "outline": [
+        {
+          "properties": {
+            "lineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "104836a90ab6b7b3eae2",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_user_acquisition"
+              }
+            },
+            "Property": "_fuaSumNewUsers"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "8840726891a49ed1e4da",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_user_acquisition"
+              }
+            },
+            "Property": "_fuaSumTotalUsers"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ef4bcef11815b4809c29",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_traffic_acquisition"
+              }
+            },
+            "Property": "_ftaSumSessions"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6b2a92fb00490b805604",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_traffic_acquisition"
+              }
+            },
+            "Property": "_ftaAvgEventsPerSession"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "dd1b5e62075241e11ce8",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_traffic_acquisition"
+              }
+            },
+            "Property": "_ftaSumEventCount"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "7480ee853799cc808ed1",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_traffic_acquisition"
+              }
+            },
+            "Property": "_ftaSumEngagedSessions"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

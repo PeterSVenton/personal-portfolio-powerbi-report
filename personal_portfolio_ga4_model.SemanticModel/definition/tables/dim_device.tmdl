@@ -1,0 +1,77 @@
+table dim_device
+	lineageTag: 6cee61c0-2752-412c-b059-5c529073f3be
+
+	column dim_device_key
+		dataType: int64
+		formatString: 0
+		lineageTag: fd095df3-f746-4de0-bf04-79a7e896ab4b
+		summarizeBy: none
+		sourceColumn: dim_device_key
+
+	column device_category
+		dataType: string
+		lineageTag: b72ac486-6e43-4265-b2d2-0f44605e6168
+		summarizeBy: none
+		sourceColumn: device_category
+
+	column operating_system
+		dataType: string
+		lineageTag: 1443b62d-abcc-4792-855e-692c047b9c2b
+		summarizeBy: none
+		sourceColumn: operating_system
+
+	column operating_system_version
+		dataType: string
+		lineageTag: 433970bc-7718-4e39-bcb5-af179ad0d789
+		summarizeBy: none
+		sourceColumn: operating_system_version
+
+	column operating_system_with_version
+		dataType: string
+		lineageTag: 3dd3665f-7e44-4df2-a95a-571f18535c77
+		summarizeBy: none
+		sourceColumn: operating_system_with_version
+
+	column browser
+		dataType: string
+		lineageTag: bc637a4d-33e7-4910-a119-18a8f919be05
+		summarizeBy: none
+		sourceColumn: browser
+
+	column screen_resolution
+		dataType: string
+		lineageTag: e1c7e92f-a0df-46ae-8427-1ca6e720643e
+		summarizeBy: none
+		sourceColumn: screen_resolution
+
+	column platform
+		dataType: string
+		lineageTag: 115748b3-3895-4e8b-8e4f-da4472a5a935
+		summarizeBy: none
+		sourceColumn: platform
+
+	column platform_device_category
+		dataType: string
+		lineageTag: 1b513593-a152-49b1-b287-2b2b13e881ac
+		summarizeBy: none
+		sourceColumn: platform_device_category
+
+	column app_version
+		dataType: string
+		lineageTag: 1ed2f600-bd6e-457c-b0dc-9fa3ed730e1e
+		summarizeBy: none
+		sourceColumn: app_version
+
+	partition dim_device = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database(),
+				    #"personal-portfolio-477421" = Source{[Name="personal-portfolio-477421"]}[Data],
+				    ga4_analytics_Schema = #"personal-portfolio-477421"{[Name="ga4_analytics",Kind="Schema"]}[Data],
+				    dim_device_Table = ga4_analytics_Schema{[Name="dim_device",Kind="Table"]}[Data]
+				in
+				    dim_device_Table
+
+	annotation PBI_ResultType = Table
+

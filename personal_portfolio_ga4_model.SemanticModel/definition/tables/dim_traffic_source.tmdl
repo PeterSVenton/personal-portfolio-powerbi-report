@@ -1,0 +1,55 @@
+table dim_traffic_source
+	lineageTag: b3185ead-cc96-41d4-bc04-a617ec3d8b8f
+
+	column dim_traffic_source_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 0d85247c-2f6c-4fe0-a637-32ee95412f00
+		summarizeBy: none
+		sourceColumn: dim_traffic_source_key
+
+	column scope
+		dataType: string
+		lineageTag: f9ebc8dc-8ad6-4d6b-8870-f9807a751722
+		summarizeBy: none
+		sourceColumn: scope
+
+	column default_channel_group
+		dataType: string
+		lineageTag: 57c67735-6384-4d0f-b792-2bec3e06eb15
+		summarizeBy: none
+		sourceColumn: default_channel_group
+
+	column source
+		dataType: string
+		lineageTag: 76371344-5131-4230-9e89-f56fce7c0d73
+		summarizeBy: none
+		sourceColumn: source
+
+	column medium
+		dataType: string
+		lineageTag: 36ab5341-3772-4aea-a610-9512c24672bf
+		summarizeBy: none
+		sourceColumn: medium
+
+	column campaign
+		dataType: string
+		lineageTag: 767d3a45-2bfc-4471-b072-efa34d05d099
+		summarizeBy: none
+		sourceColumn: campaign
+
+	partition dim_traffic_source = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database(),
+				    #"personal-portfolio-477421" = Source{[Name="personal-portfolio-477421"]}[Data],
+				    ga4_analytics_Schema = #"personal-portfolio-477421"{[Name="ga4_analytics",Kind="Schema"]}[Data],
+				    dim_traffic_source_Table = ga4_analytics_Schema{[Name="dim_traffic_source",Kind="Table"]}[Data]
+				in
+				    dim_traffic_source_Table
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

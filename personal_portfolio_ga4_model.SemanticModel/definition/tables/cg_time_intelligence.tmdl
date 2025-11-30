@@ -1,0 +1,59 @@
+table cg_time_intelligence
+	lineageTag: 5aefd278-28a0-438c-8a57-5c30e693b2a1
+
+	calculationGroup
+
+		calculationItem Yesterday =
+				
+				
+				VAR _Yesterday = [*Yesterday]
+				
+				RETURN
+				CALCULATE(SELECTEDMEASURE(), dim_date[date] = _Yesterday)
+
+		calculationItem 'Current Week' =
+				
+				
+				VAR _CurrentWeek = WEEKNUM([*Yesterday], 2)
+				
+				RETURN
+				CALCULATE(SELECTEDMEASURE(), dim_date[iso_week] = _CurrentWeek)
+
+		calculationItem 'Current Month' =
+				
+				
+				VAR _CurrentMonth = MONTH([*Yesterday])
+				
+				RETURN
+				CALCULATE(SELECTEDMEASURE(), dim_date[month] = _CurrentMonth)
+
+		calculationItem 'Current Year' =
+				
+				
+				VAR _CurrentYear = YEAR([*Yesterday])
+				
+				RETURN
+				CALCULATE(SELECTEDMEASURE(), dim_date[year] = _CurrentYear)
+
+	measure *Yesterday = TODAY() - 1
+		formatString: General Date
+		lineageTag: cf3b9365-815b-490e-b550-6292ad79139e
+
+	column 'Calculation group column'
+		dataType: string
+		lineageTag: 9f901e1a-b3b6-4344-8807-5eb95bfa1804
+		summarizeBy: none
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordinal
+		dataType: int64
+		formatString: 0
+		lineageTag: ec20baa7-8231-475e-a3d9-07f998be7f95
+		summarizeBy: sum
+		sourceColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+

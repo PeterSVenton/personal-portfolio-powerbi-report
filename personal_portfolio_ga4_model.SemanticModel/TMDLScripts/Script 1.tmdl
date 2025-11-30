@@ -1,0 +1,80 @@
+createOrReplace
+
+	table dim_date
+		lineageTag: ccf7451b-3133-41df-b942-5b12ab6614aa
+
+		column date
+			dataType: dateTime
+			formatString: Long Date
+			lineageTag: 5c45d6f4-5f04-450f-939e-98bae1000c97
+			summarizeBy: none
+			sourceColumn: date
+
+			variation Variation
+				isDefault
+				relationship: b7060a71-f9e7-41cb-8854-bcb5645fd398
+				defaultHierarchy: LocalDateTable_a247d0c0-5cd9-406d-ae98-80133bfaaa6d.'Date Hierarchy'
+
+
+			annotation UnderlyingDateTimeDataType = Date
+
+		column dim_date_key
+			dataType: string
+			lineageTag: 6daab444-1d80-4cca-a944-b47f598acbb4
+			summarizeBy: none
+			sourceColumn: dim_date_key
+
+
+		column year
+			dataType: int64
+			formatString: 0
+			lineageTag: 5c724fc6-041b-4f34-9926-544e3d3d6778
+			summarizeBy: none
+			sourceColumn: year
+
+
+		column month
+			dataType: int64
+			formatString: 0
+			lineageTag: 10464593-d09a-496e-ab35-b20a37aa80d9
+			summarizeBy: none
+			sourceColumn: month
+
+
+		column day
+			dataType: int64
+			formatString: 0
+			lineageTag: 2e12d846-b186-4123-a275-fe16e2721337
+			summarizeBy: none
+			sourceColumn: day
+
+
+		column iso_week
+			dataType: int64
+			formatString: 0
+			lineageTag: 3ca0a94c-d288-4539-a3ee-5d81514862c5
+			summarizeBy: none
+			sourceColumn: iso_week
+
+
+		column quarter
+			dataType: int64
+			formatString: 0
+			lineageTag: 0ae2c854-a639-4f0a-b268-71d8fb51ff6c
+			summarizeBy: none
+			sourceColumn: quarter
+
+
+		partition dim_date = m
+			mode: import
+			source =
+					let
+					    Source = GoogleBigQuery.Database(),
+					    #"personal-portfolio-477421" = Source{[Name="personal-portfolio-477421"]}[Data],
+					    ga4_analytics_Schema = #"personal-portfolio-477421"{[Name="ga4_analytics",Kind="Schema"]}[Data],
+					    dim_date_Table = ga4_analytics_Schema{[Name="dim_date",Kind="Table"]}[Data]
+					in
+					    dim_date_Table
+
+		annotation PBI_ResultType = Table
+
